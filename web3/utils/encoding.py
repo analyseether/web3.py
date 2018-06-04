@@ -255,7 +255,7 @@ class FriendlyJsonSerde:
             return decoded
         except json.decoder.JSONDecodeError as exc:
             err_msg = 'Could not decode {} because of {}.'.format(repr(json_str), exc)
-            raise ValueError(err_msg)
+            raise json.decoder.JSONDecodeError(err_msg, exc.doc, exc.pos)
 
     def json_encode(self, obj):
         try:
